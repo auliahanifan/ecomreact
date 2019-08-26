@@ -14,13 +14,13 @@ class ProductAdmin extends React.Component {
         super(props);
         this.state = {
             product: [],
-            product_name: "",
-            product_stock: 0,
-            product_price: 0,
-            product_weight: 0,
-            product_image_url: "",
-            product_description: "",
-            category_id: ""
+            product_name: null,
+            product_stock: null,
+            product_price: null,
+            product_weight: null,
+            product_image_url: null,
+            product_description: null,
+            category_id: null
         }
     }
     setName = async event => {
@@ -91,12 +91,25 @@ class ProductAdmin extends React.Component {
 
     doEdit = async e => {
         e.preventDefault();
+        var val = Object.values(this.state)
+        var key = Object.keys(this.state)
+        var data = {}
+        val.map((item, index) => {
+
+        })
+        console.log(val)
         console.log(e.target.value)
         const self = this;
         await axios
-            .put("http://0.0.0.0:8000/api/category/" + String(e.target.value), {
-                name: self.state.name,
-                description: self.state.description
+            .put("http://0.0.0.0:8000/api/product/" + String(e.target.value), {
+
+                product_name: self.state.product_name,
+                product_description: self.state.product_description,
+                product_weight: self.state.product_weight,
+                product_stock: self.state.product_stock,
+                product_image_url: self.state.product_image_url,
+                product_price: self.state.product_price,
+                category_id: self.state.category_id
             },
                 {
                     headers: {
