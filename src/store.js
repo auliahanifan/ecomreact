@@ -1,7 +1,7 @@
 import createStore from "unistore";
 
 export const store = createStore({
-  url: "http://api.ba-ik.indocover.com",
+  url: "http://0.0.0.0:8000",
   cart: 0,
   category: [],
   product: [],
