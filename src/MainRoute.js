@@ -18,11 +18,13 @@ import UpdateProfile from "./pages/update_profile/UpdateProfile"
 import Profile from "./pages/profile/Profile"
 import InvoiceDetails from "./pages/invoice_details/InvoiceDetails";
 import History from "./pages/history/History"
+import NotMatch from "./pages/notfound/NotFound"
 // page admin
 import SigninAdmin from "./pages_admin/signin_admin/SigninAdmin"
 import TransactionAdmin from "./pages_admin/transaction_admin/TransactionAdmin";
 import ProductAdmin from "./pages_admin/product_admin/ProductAdmin";
 import CategoryAdmin from "./pages_admin/category_admin/CategoryAdmin";
+
 class MainRoute extends React.Component {
   render() {
     return (
@@ -44,6 +46,7 @@ class MainRoute extends React.Component {
           <Route path="/admin/transaction" component={TransactionAdmin} />
           <Route path="/admin/product" component={ProductAdmin} />
           <Route path="/admin/category" component={CategoryAdmin} />
+          <Route component={NotMatch} />
         </Switch>
       </Router>
     );
