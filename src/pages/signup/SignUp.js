@@ -21,34 +21,31 @@ class SignUp extends React.Component {
     setUsername = async event => {
         event.preventDefault();
         await this.setState({ username: event.target.value });
-        console.log(this.state.username)
     };
 
     setEmail = async event => {
         event.preventDefault();
         await this.setState({ email: event.target.value });
-        console.log(this.state.email)
     };
 
 
     setPassword = async event => {
         event.preventDefault();
         await this.setState({ password: event.target.value });
-        console.log(this.state.password)
     };
 
     doLogin = async e => {
         e.preventDefault();
         const self = this;
         await axios
-            .post("http://0.0.0.0:8000/api/register", {
+            .post(this.props.url + "/api/register", {
                 username: self.state.username,
                 password: self.state.password,
                 email: self.state.email
             })
             .then(response => {
                 axios
-                    .post("http://0.0.0.0:8000/api/login", {
+                    .post(this.props.url + "/api/login", {
                         username: self.state.username,
                         password: self.state.password
                     })
@@ -141,4 +138,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default connect('', actions)(SignUp);
+export default connect('url', actions)(SignUp);

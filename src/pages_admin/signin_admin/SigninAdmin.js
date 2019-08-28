@@ -14,7 +14,8 @@ class SigninAdmin extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      product: []
     };
   }
 
@@ -32,18 +33,17 @@ class SigninAdmin extends React.Component {
     e.preventDefault();
     const self = this;
     await axios
-      .post("http://0.0.0.0:8000/api/login/admin", {
+      .post(this.props.url + "/api/login/admin", {
         username: self.state.username,
         password: self.state.password
       })
       .then(response => {
         localStorage.setItem('admin_logged_in', true)
         localStorage.setItem('admin_token', response.data.token)
-        console.log("Anda Berhasil Login!")
+
         window.location.reload()
       })
       .catch(error => {
-        console.log(error);
         alert('Salah Username atau Password! Coba Ulangi')
       });
   };
@@ -132,4 +132,4 @@ class SigninAdmin extends React.Component {
   }
 }
 
-export default connect('', actions)(SigninAdmin);
+export default connect('url', actions)(SigninAdmin);

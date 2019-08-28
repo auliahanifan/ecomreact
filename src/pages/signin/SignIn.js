@@ -32,7 +32,7 @@ class SignIn extends React.Component {
         e.preventDefault();
         const self = this;
         await axios
-            .post("http://0.0.0.0:8000/api/login", {
+            .post(this.props.url + "/api/login", {
                 username: self.state.username,
                 password: self.state.password
             })
@@ -41,7 +41,6 @@ class SignIn extends React.Component {
                 localStorage.setItem('user_token', response.data.token)
                 self.props.setLoggedIn({ logged_in: localStorage.getItem('logged_in') })
                 self.props.setUserToken({ user_token: localStorage.getItem('user_token') })
-                console.log("Anda Berhasil Login!")
                 self.props.history.push('/')
             })
             .catch(error => {
@@ -110,4 +109,4 @@ class SignIn extends React.Component {
     }
 }
 
-export default connect('', actions)(SignIn);
+export default connect('url', actions)(SignIn);

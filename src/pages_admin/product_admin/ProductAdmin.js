@@ -64,7 +64,7 @@ class ProductAdmin extends React.Component {
         e.preventDefault();
         const self = this;
         await axios
-            .post("http://0.0.0.0:8000/api/product", {
+            .post(this.props.url + "/api/product", {
                 product_name: self.state.product_name,
                 product_description: self.state.product_description,
                 product_weight: self.state.product_weight,
@@ -91,17 +91,9 @@ class ProductAdmin extends React.Component {
 
     doEdit = async e => {
         e.preventDefault();
-        var val = Object.values(this.state)
-        var key = Object.keys(this.state)
-        var data = {}
-        val.map((item, index) => {
-
-        })
-        console.log(val)
-        console.log(e.target.value)
         const self = this;
         await axios
-            .put("http://0.0.0.0:8000/api/product/" + String(e.target.value), {
+            .put(this.props.url + "/api/product/" + String(e.target.value), {
 
                 product_name: self.state.product_name,
                 product_description: self.state.product_description,
@@ -118,21 +110,19 @@ class ProductAdmin extends React.Component {
                 })
             .then(response => {
                 window.location.reload()
-                console.log("BERHASIL")
+
             })
             .catch(error => {
                 console.log(error);
-                console.log("GAGAL")
             });
     };
 
 
     doDelete = async e => {
         e.preventDefault();
-        console.log(e.target.value)
         const self = this;
         await axios
-            .delete("http://0.0.0.0:8000/api/category/" + String(e.target.value),
+            .delete(this.props.url + "/api/product/" + String(e.target.value),
                 {
                     headers: {
                         Authorization: "Bearer " + String(localStorage.getItem('admin_token'))
@@ -143,7 +133,7 @@ class ProductAdmin extends React.Component {
                 console.log("BERHASIL")
             })
             .catch(error => {
-                alert("Tidak Dapat Dihapus, Karena Menjadi Foreign Key!")
+                // alert(e.target.value)
             });
     };
 
@@ -153,14 +143,13 @@ class ProductAdmin extends React.Component {
     componentDidMount = async () => {
         const self = this;
         await axios
-            .get("http://0.0.0.0:8000/api/product/all", {
+            .get(this.props.url + "/api/product/all", {
                 headers: {
                     Authorization: "Bearer " + String(localStorage.getItem('admin_token'))
                 }
             })
             .then(response => {
                 this.setState({ product: response.data })
-                console.log(response.data)
             })
             .catch(error => {
                 console.log(error);
@@ -178,7 +167,7 @@ class ProductAdmin extends React.Component {
                             <div className="col-12">
                                 <br />
                                 <h1 className="text-center"> Product Settings </h1>
-                                <h4>Form Product</h4>
+                                <h4>Form Product (Gunakan Ini Untuk Menambah atau Mengubah Product)</h4>
                                 <form class="form-signin">
                                     <label for="inputName" class="sr-only">
                                         Name
@@ -303,11 +292,11 @@ class ProductAdmin extends React.Component {
                                                             <td>{item.product_image_url.slice(0, 20)}...(cut)</td>
                                                             <td>{item.created_at.slice(0, 26)}</td>
                                                             <td>{item.updated_at.slice(0, 26)}</td>
-                                                            <td><button value={item.category_id} class="btn btn-lg btn-primary btn-block" type="submit" onClick={e => this.doEdit(e)}>
+                                                            <td><button value={item.product_id} class="btn btn-lg btn-primary btn-block" type="submit" onClick={e => this.doEdit(e)}>
                                                                 Change
                                                         </button>
                                                             </td>
-                                                            <td><button value={item.category_id} class="btn btn-lg btn-danger btn-block" type="submit" onClick={e => this.doDelete(e)}>
+                                                            <td><button value={item.product_id} class="btn btn-lg btn-danger btn-block" type="submit" onClick={e => this.doDelete(e)}>
                                                                 Delete
                                                 </button></td>
                                                         </tr>
@@ -332,4 +321,4 @@ class ProductAdmin extends React.Component {
     }
 }
 
-export default connect('', actions)(ProductAdmin);
+export default connect('url', actions)(ProductAdmin);

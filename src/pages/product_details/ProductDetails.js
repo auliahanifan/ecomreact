@@ -30,7 +30,7 @@ class ProductDetails extends React.Component {
     e.preventDefault();
     const self = this;
     axios
-      .post("http://0.0.0.0:8000/api/cart", {
+      .post(this.props.url + "/api/cart", {
         product_id: self.state.id,
         qty: self.state.qty,
       }, {
@@ -48,38 +48,23 @@ class ProductDetails extends React.Component {
         alert('Terjadi kesalahan!')
       });
 
-    // let cartDetail = {
-    //   transaction_id: 0,
-    //   product_id: this.state.id,
-    //   product_name: this.state.name,
-    //   qty: this.state.qty,
-    //   total_price: this.state.subtotal_price,
-    //   photo: this.state.photo
-    // };
-    // let cartList = this.state.cartList;
-    // cartList.push(cartDetail);
-    // this.setState({ cartList: cartList });
-    // this.props.setCartList(cartList);
-    // console.log(this.state.cart);
-    // this.props.tambahCart(this.state.cart);
-    // this.props.history.push("/shopping/cart");
   };
 
   setQty = async event => {
     event.preventDefault();
     await this.setState({ qty: Number(event.target.value) });
     await this.setState({ subtotal_price: this.state.price * this.state.qty });
-    console.log(this.state.qty)
+
   };
 
   componentDidMount = async () => {
     const self = this;
     await axios
       .get(
-        "http://0.0.0.0:8000/api/product/" + String(self.props.match.params.id)
+        this.props.url + "/api/product/" + String(self.props.match.params.id)
       )
       .then(response => {
-        console.log("get product", response.data);
+
         this.setState({
           description: response.data.product_description,
           weight: response.data.product_weight,
@@ -94,7 +79,6 @@ class ProductDetails extends React.Component {
         });
       })
       .catch(error => {
-        console.log("error product", error);
       });
   };
 
@@ -125,6 +109,13 @@ class ProductDetails extends React.Component {
 
                           <div className="row justify-content-between">
                             <div className="col-6">
+                              Stock: <br />
+                            </div>
+                            <div className="col-6 text-right">
+                              {this.state.stock}<br />
+                              <br />
+                            </div>
+                            <div className="col-6">
                               <p className="card-text"> Quantity : </p>
 
                               <h3 className="card-subtitle mb-2 text-muted">
@@ -134,7 +125,9 @@ class ProductDetails extends React.Component {
                                 {this.state.subtotal_price}
                               </h2>
                             </div>
+
                             <div className="col-6 text-right">
+
                               <input
                                 type="number"
                                 name="quantity"
@@ -174,6 +167,6 @@ class ProductDetails extends React.Component {
 }
 
 export default connect(
-  "cart, cartList",
+  "cart, cartList, url",
   actions
 )(ProductDetails);

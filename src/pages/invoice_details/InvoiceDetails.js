@@ -21,11 +21,8 @@ class InvoiceDetails extends React.Component {
   addToCart = async e => {
     e.preventDefault();
     const self = this;
-    // this.setState({ cart: Number(this.state.cart) + Number(1) });
-    // await this.props.tambahCart(this.state.cart);
-    // console.log(self.state.cart)
     axios
-      .post("http://0.0.0.0:8000/api/cart", {
+      .post(this.props.url + "/api/cart", {
         product_id: self.state.id,
         qty: self.state.qty,
       }, {
@@ -34,7 +31,6 @@ class InvoiceDetails extends React.Component {
           }
         })
       .then(response => {
-        console.log(response.data)
         this.setState({ cart: Number(this.state.cart) + Number(1) });
         this.props.tambahCart(this.state.cart);
         alert("Barang yang anda pilih telah masuk keranjang!")
@@ -44,35 +40,19 @@ class InvoiceDetails extends React.Component {
         alert('Terjadi kesalahan!')
       });
 
-    // let cartDetail = {
-    //   transaction_id: 0,
-    //   product_id: this.state.id,
-    //   product_name: this.state.name,
-    //   qty: this.state.qty,
-    //   total_price: this.state.subtotal_price,
-    //   photo: this.state.photo
-    // };
-    // let cartList = this.state.cartList;
-    // cartList.push(cartDetail);
-    // this.setState({ cartList: cartList });
-    // this.props.setCartList(cartList);
-    // console.log(this.state.cart);
-    // this.props.tambahCart(this.state.cart);
-    // this.props.history.push("/shopping/cart");
   };
 
   setQty = async event => {
     event.preventDefault();
     await this.setState({ qty: Number(event.target.value) });
     await this.setState({ subtotal_price: this.state.price * this.state.qty });
-    console.log(this.state.qty)
   };
 
   componentDidMount = async () => {
     const self = this;
     // Untuk mendapatkan isi dari cart
     await axios
-      .get(`http://0.0.0.0:8000/api/transaction_details/${self.props.match.params.trx_id}`,
+      .get(this.props.url + `/api/transaction_details/${self.props.match.params.trx_id}`,
         {
           headers: {
             Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -90,7 +70,7 @@ class InvoiceDetails extends React.Component {
       });
 
     await axios
-      .get('http://0.0.0.0:8000/api/transaction',
+      .get(this.props.url + '/api/transaction',
         {
           headers: {
             Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -215,7 +195,7 @@ class InvoiceDetails extends React.Component {
                   <tr>
                     <th scope="row">
                       Silahkan melakukan pembayaran via :
-  
+
                     <table className="table table-bordered">
 
                         <tbody>
@@ -252,6 +232,6 @@ class InvoiceDetails extends React.Component {
 }
 
 export default connect(
-  "cart, cartList",
+  "cart, cartList, url",
   actions
 )(InvoiceDetails);

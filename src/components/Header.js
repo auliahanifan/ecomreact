@@ -20,7 +20,7 @@ class Header extends React.Component {
     await this.props.setUserToken({ user_token: localStorage.getItem('user_token') })
     const self = this;
     axios
-      .get("http://0.0.0.0:8000/api/cart",
+      .get(this.props.url + "/api/cart",
         {
           headers: {
             Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -34,7 +34,7 @@ class Header extends React.Component {
       });
 
     await axios
-      .get("http://0.0.0.0:8000/api/product/all")
+      .get(this.props.url + "/api/product/all")
       .then(function (response) {
         self.props.setProduct(response.data)
       })
@@ -55,7 +55,7 @@ class Header extends React.Component {
     if (localStorage.getItem('logged_in') == 'true') {
       const self = this;
       axios
-        .get("http://0.0.0.0:8000/api/cart",
+        .get(this.props.url + "/api/cart",
           {
             headers: {
               Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -178,6 +178,6 @@ class Header extends React.Component {
 }
 
 export default connect(
-  "logged_in, user_token, cart, cartTotalProduct",
+  "logged_in, user_token, cart, cartTotalProduct, url",
   actions
 )(Header);
