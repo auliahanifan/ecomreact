@@ -9,7 +9,7 @@ env:
   - DOCKER_IMAGE_NAME="react-ceria"
   - DOCKER_HUB_ORG="ahanifan"
 before_script:
-- openssl aes-256-cbc -K $encrypted_44a6f8b32bf9_key $encrypted_44a6f8b32bf9_iv
+- openssl aes-256-cbc -K $encrypted_daa9fccb1b33_key $encrypted_daa9fccb1b33_iv
   -in deploy_rsa.enc -out deploy_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 deploy_rsa
