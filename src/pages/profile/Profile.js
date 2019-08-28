@@ -28,7 +28,6 @@ class SignUp extends React.Component {
                 self.props.setUsername(response.data.claims.username)
             })
             .catch(error => {
-                console.log(error);
             });
         //  Untuk mendapatkan details
         await axios

@@ -96,7 +96,6 @@ class UpdateProfile extends React.Component {
                     }
                 })
             .then(response => {
-                console.log("Terimakasih Telah Melengkapi Profil!")
                 self.props.history.push('/')
             })
             .catch(error => {

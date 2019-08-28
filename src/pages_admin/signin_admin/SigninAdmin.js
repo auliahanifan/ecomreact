@@ -40,11 +40,10 @@ class SigninAdmin extends React.Component {
       .then(response => {
         localStorage.setItem('admin_logged_in', true)
         localStorage.setItem('admin_token', response.data.token)
-        console.log("Anda Berhasil Login!")
+
         window.location.reload()
       })
       .catch(error => {
-        console.log(error);
         alert('Salah Username atau Password! Coba Ulangi')
       });
   };

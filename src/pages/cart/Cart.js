@@ -44,15 +44,11 @@ class Cart extends React.Component {
 
 
     var total_price = 0
-    console.log(self.props.cartList)
     await this.props.cartList.map((item, index) => {
       total_price += item.price
 
-      console.log("apa")
     })
     await self.setState({ total_price: total_price })
-    console.log(total_price)
-    console.log(self.state.total_price)
   }
 
   render() {

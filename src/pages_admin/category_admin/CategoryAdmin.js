@@ -79,7 +79,7 @@ class CategoryAdmin extends React.Component {
 
     doDelete = async e => {
         e.preventDefault();
-        console.log(e.target.value)
+
         const self = this;
         await axios
             .delete(this.props.url + "/api/category/" + String(e.target.value),
@@ -158,61 +158,63 @@ class CategoryAdmin extends React.Component {
                                 <br />
                                 <form>
                                     <h4>List Category & Edit It</h4>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Set New Name</th>
-                                                <th scope="col">Set New Description</th>
-                                                <th scope="col">Edit</th>
-                                                <th scope="col">Delete</th>
+                                    <div className="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Description</th>
+                                                    <th scope="col">Set New Name</th>
+                                                    <th scope="col">Set New Description</th>
+                                                    <th scope="col">Edit</th>
+                                                    <th scope="col">Delete</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {this.state.category.map((item, index) => {
-                                                return (
-                                                    <tr>
-                                                        <th scope="row">{index + 1}</th>
-                                                        <td>{item.category_id}</td>
-                                                        <td>{item.category_name}</td>
-                                                        <td>{item.category_description}</td>
-                                                        <td><input
-                                                            type="text"
-                                                            id="inputName"
-                                                            class="form-control"
-                                                            placeholder="Name"
-                                                            onChange={event => this.setName(event)} />
-                                                        </td>
-                                                        <td>
-                                                            <input
-                                                                type="Description"
-                                                                id="inputDescription"
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {this.state.category.map((item, index) => {
+                                                    return (
+                                                        <tr>
+                                                            <th scope="row">{index + 1}</th>
+                                                            <td>{item.category_id}</td>
+                                                            <td>{item.category_name}</td>
+                                                            <td>{item.category_description}</td>
+                                                            <td><input
+                                                                type="text"
+                                                                id="inputName"
                                                                 class="form-control"
-                                                                placeholder="Description"
-                                                                onChange={event => this.setDescription(event)}
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <button value={item.category_id} class="btn btn-lg btn-primary btn-block" type="submit" onClick={e => this.doEdit(e)}>
-                                                                Change
+                                                                placeholder="Name"
+                                                                onChange={event => this.setName(event)} />
+                                                            </td>
+                                                            <td>
+                                                                <input
+                                                                    type="Description"
+                                                                    id="inputDescription"
+                                                                    class="form-control"
+                                                                    placeholder="Description"
+                                                                    onChange={event => this.setDescription(event)}
+                                                                />
+                                                            </td>
+                                                            <td>
+                                                                <button value={item.category_id} class="btn btn-lg btn-primary btn-block" type="submit" onClick={e => this.doEdit(e)}>
+                                                                    Change
                                                 </button>
 
-                                                        </td>
-                                                        <td>
-                                                            <button value={item.category_id} class="btn btn-lg btn-danger btn-block" type="submit" onClick={e => this.doDelete(e)}>
-                                                                Delete
+                                                            </td>
+                                                            <td>
+                                                                <button value={item.category_id} class="btn btn-lg btn-danger btn-block" type="submit" onClick={e => this.doDelete(e)}>
+                                                                    Delete
                                                 </button> </td>
-                                                    </tr>
-                                                )
-                                            })}
+                                                        </tr>
+                                                    )
+                                                })}
 
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </form>
 
                             </div>

@@ -71,35 +71,38 @@ class History extends React.Component {
                             <div className="col-md-12 text-center">
                                 <br />
                                 <h3 class="h3 mb-3 font-weight-normal">Riwayat Transaksi</h3>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama Penerima</th>
-                                            <th scope="col">Total Harga</th>
-                                            <th scope="col">Status Pengiriman</th>
-                                            <th scope="col">Waktu Transaksi</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.state.trx_details.map((item, index) => {
-                                            return (
+                                <div class="table-responsive">
 
-                                                <tr>
-                                                    <th scope="row">{index + 1}</th>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama Penerima</th>
+                                                <th scope="col">Total Harga</th>
+                                                <th scope="col">Status Pengiriman</th>
+                                                <th scope="col">Waktu Transaksi</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {this.state.trx_details.map((item, index) => {
+                                                return (
 
-                                                    <td>{item.full_name}</td>
-                                                    <td>{item.total_price}</td>
-                                                    <td>{this.state.status[index]}</td>
-                                                    <td>{item.created_at.slice(0, 26)}</td>
-                                                    <td><Link to={"/invoice/" + item.transaction_id}>Lihat Invoice</Link></td>
-                                                </tr>
+                                                    <tr>
+                                                        <th scope="row">{index + 1}</th>
 
-                                            )
-                                        })}
-                                    </tbody>
-                                </table>
+                                                        <td>{item.full_name}</td>
+                                                        <td>{item.total_price}</td>
+                                                        <td>{this.state.status[index]}</td>
+                                                        <td>{item.created_at.slice(0, 26)}</td>
+                                                        <td><Link to={"/invoice/" + item.transaction_id}>Lihat Invoice</Link></td>
+                                                    </tr>
+
+                                                )
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -40,10 +40,9 @@ class TransactionAdmin extends React.Component {
                 })
             .then(response => {
                 window.location.reload()
-                console.log("Berhasil Mengubah Status Pembayaran")
             })
             .catch(error => {
-                // alert(e.target.value)
+
             });
     };
 

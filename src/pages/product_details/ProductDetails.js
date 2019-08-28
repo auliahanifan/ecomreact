@@ -54,7 +54,7 @@ class ProductDetails extends React.Component {
     event.preventDefault();
     await this.setState({ qty: Number(event.target.value) });
     await this.setState({ subtotal_price: this.state.price * this.state.qty });
-    console.log(this.state.qty)
+
   };
 
   componentDidMount = async () => {
@@ -64,7 +64,7 @@ class ProductDetails extends React.Component {
         this.props.url + "/api/product/" + String(self.props.match.params.id)
       )
       .then(response => {
-        console.log("get product", response.data);
+
         this.setState({
           description: response.data.product_description,
           weight: response.data.product_weight,
@@ -79,7 +79,6 @@ class ProductDetails extends React.Component {
         });
       })
       .catch(error => {
-        console.log("error product", error);
       });
   };
 

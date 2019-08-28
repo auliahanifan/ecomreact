@@ -110,11 +110,10 @@ class ProductAdmin extends React.Component {
                 })
             .then(response => {
                 window.location.reload()
-                console.log("BERHASIL")
+
             })
             .catch(error => {
                 console.log(error);
-                console.log("GAGAL")
             });
     };
 

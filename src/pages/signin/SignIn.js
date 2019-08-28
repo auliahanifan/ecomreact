@@ -41,7 +41,6 @@ class SignIn extends React.Component {
                 localStorage.setItem('user_token', response.data.token)
                 self.props.setLoggedIn({ logged_in: localStorage.getItem('logged_in') })
                 self.props.setUserToken({ user_token: localStorage.getItem('user_token') })
-                console.log("Anda Berhasil Login!")
                 self.props.history.push('/')
             })
             .catch(error => {

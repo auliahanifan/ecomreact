@@ -21,9 +21,6 @@ class InvoiceDetails extends React.Component {
   addToCart = async e => {
     e.preventDefault();
     const self = this;
-    // this.setState({ cart: Number(this.state.cart) + Number(1) });
-    // await this.props.tambahCart(this.state.cart);
-    // console.log(self.state.cart)
     axios
       .post(this.props.url + "/api/cart", {
         product_id: self.state.id,
@@ -34,7 +31,6 @@ class InvoiceDetails extends React.Component {
           }
         })
       .then(response => {
-        console.log(response.data)
         this.setState({ cart: Number(this.state.cart) + Number(1) });
         this.props.tambahCart(this.state.cart);
         alert("Barang yang anda pilih telah masuk keranjang!")
@@ -44,28 +40,12 @@ class InvoiceDetails extends React.Component {
         alert('Terjadi kesalahan!')
       });
 
-    // let cartDetail = {
-    //   transaction_id: 0,
-    //   product_id: this.state.id,
-    //   product_name: this.state.name,
-    //   qty: this.state.qty,
-    //   total_price: this.state.subtotal_price,
-    //   photo: this.state.photo
-    // };
-    // let cartList = this.state.cartList;
-    // cartList.push(cartDetail);
-    // this.setState({ cartList: cartList });
-    // this.props.setCartList(cartList);
-    // console.log(this.state.cart);
-    // this.props.tambahCart(this.state.cart);
-    // this.props.history.push("/shopping/cart");
   };
 
   setQty = async event => {
     event.preventDefault();
     await this.setState({ qty: Number(event.target.value) });
     await this.setState({ subtotal_price: this.state.price * this.state.qty });
-    console.log(this.state.qty)
   };
 
   componentDidMount = async () => {

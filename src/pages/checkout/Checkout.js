@@ -27,42 +27,34 @@ class Checkout extends React.Component {
 
   setFullName = e => {
     this.setState({ full_name: e.target.value })
-    console.log(e.target.value)
   }
 
   setHandphone = e => {
     this.setState({ handphone: e.target.value })
-    console.log(e.target.value)
   }
 
   setAddress = e => {
     this.setState({ address: e.target.value })
-    console.log(e.target.value)
   }
 
   setProvince = e => {
     this.setState({ province: e.target.value })
-    console.log(e.target.value)
   }
 
   setCity = e => {
     this.setState({ city: e.target.value })
-    console.log(e.target.value)
   }
 
   setDistrict = e => {
     this.setState({ district: e.target.value })
-    console.log(e.target.value)
   }
 
   setZipCode = e => {
     this.setState({ zip_code: e.target.value })
-    console.log(e.target.value)
   }
 
   setNote = e => {
     this.setState({ note: e.target.value })
-    console.log(e.target.value)
   }
 
   setUserOwnData = async e => {
@@ -161,7 +153,7 @@ class Checkout extends React.Component {
       })
       .catch(error => {
         console.log(error);
-        alert("asu")
+
       });
   }
 
@@ -181,6 +173,11 @@ class Checkout extends React.Component {
                 <h4 className="mb-3">Informasi Alamat Pengiriman</h4>
                 <form onSubmit={this.doComplete}>
                   <div className="row">
+                    <div className="col-md-12 mb-3">
+                      <input type="checkbox" name="" value="" onChange={this.setUserOwnData} />
+                      Sesuaikan dengan data pribadi saya.
+                    </div>
+
                     <div className="col-md-6 mb-3">
                       <label for="fullName">Nama Lengkap</label>
                       <input type="text" className="form-control" id="fullName" placeholder="" value={this.state.full_name} onChange={this.setFullName} required="required" />
@@ -230,9 +227,6 @@ class Checkout extends React.Component {
                         Valid City is required.
                     </div>
                     </div>
-                    <div className="col-md-12 mb-3">
-                      <input type="checkbox" name="" value="" onChange={this.setUserOwnData} /> Sesuaikan dengan data pribadi saya.
-                  </div>
                     <div className="col-md-12 mb-3">
                       <label for="note">Catatan Pembelian</label>
                       <textarea placeholder="Beri catatan khusus untuk pesanan Anda" className="form-control" id="note" row="5" onChange={this.setNote} />
