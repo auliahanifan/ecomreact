@@ -83,7 +83,7 @@ class HeaderAdmin extends React.Component {
                                 </h6>
                             </li>
                         </ul> */}
-                        <p className="h4 text-white" style={{ padding: "0px", margin: "0px" }}>for Admin</p>
+                        <p className="h4 text-white" style={{ padding: "0px", margin: "0px" }}>Admin Only</p>
                         <button
                             className="navbar-toggler"
                             type="button"
