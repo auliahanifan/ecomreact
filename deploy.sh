@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo docker stop backend
-sudo docker rm backend
-sudo docker rmi fikriamri/e-commerce-backend:v.1
-sudo docker run -d -p 5020:5020 --name backend fikriamri/e-commerce-backend:v.1
+sudo docker stop react-frontend
+sudo docker rm react-frontend
+sudo docker rmi ahanifan/react-frontend:latest
+sudo docker run -d -p 3000:80 --name reactceria ahanifan/react-fronted:latest
