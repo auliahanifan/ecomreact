@@ -145,7 +145,7 @@ class HeaderAdmin extends React.Component {
                         <Link to="/admin" className="navbar-brand">
                             <img src={logo} height="40px" />
                         </Link>
-                        <p className="h4 text-white" style={{ padding: "0px", margin: "0px" }}>for Admin</p>
+                        <p className="h4 text-white" style={{ padding: "0px", margin: "0px" }}>Admin Only</p>
 
                         <button
                             className="navbar-toggler"
