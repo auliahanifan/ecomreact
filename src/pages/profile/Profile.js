@@ -18,7 +18,7 @@ class SignUp extends React.Component {
         const self = this;
         // Untuk mendapatkan username
         await axios
-            .get("http://0.0.0.0:8000/api/login",
+            .get(this.props.url + "/api/login",
                 {
                     headers: {
                         Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -32,7 +32,7 @@ class SignUp extends React.Component {
             });
         //  Untuk mendapatkan details
         await axios
-            .get("http://0.0.0.0:8000/api/user_details",
+            .get(this.props.url + "/api/user_details",
                 {
                     headers: {
                         Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -140,4 +140,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default connect('userFullName, userAddress, userSex, userPhone,  username, userProvince, userCity, userDistrict, userZipCode', actions)(SignUp);
+export default connect('url, userFullName, userAddress, userSex, userPhone,  username, userProvince, userCity, userDistrict, userZipCode', actions)(SignUp);

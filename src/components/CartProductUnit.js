@@ -18,15 +18,14 @@ class CartProductUnit extends React.Component {
     e.preventDefault()
     const self = this
     await axios
-      .delete("http://0.0.0.0:8000/api/cart/" + this.props.onClick,
+      .delete(this.props.url + "/api/cart/" + this.props.onClick,
         {
           headers: {
             Authorization: "Bearer " + String(localStorage.getItem('user_token'))
           }
         })
       .then(async response => {
-        console.log(response.data)
-        // alert("berhasil")
+
         await alert("Anda telah mengeluarkan 1 barang dari keranjang")
         window.location.reload()
       })
@@ -95,13 +94,6 @@ class CartProductUnit extends React.Component {
                   </table>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6">
-                  {/* <input
-                    type="number"
-                    name="quantity"
-                    min="1"
-                    max="100"
-                    style={{ width: "170px" }}
-                  /> */}
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 text-right">
                   <h6>Subtotal: {this.props.price}</h6>
@@ -115,4 +107,4 @@ class CartProductUnit extends React.Component {
   }
 }
 
-export default connect("cart, cartList, cartTotalPrice", actions)(withRouter(CartProductUnit));
+export default connect("cart, cartList, cartTotalPrice, url", actions)(withRouter(CartProductUnit));

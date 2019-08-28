@@ -16,7 +16,7 @@ class CategoryList extends React.Component {
     clickHandle = async (event) => {
         event.preventDefault()
         await axios
-            .get("http://0.0.0.0:8000/api/product/category/" + String(event.target.value))
+            .get(this.props.url + "/api/product/category/" + String(event.target.value))
             .then(async response => {
 
                 this.props.setProduct(response.data)
@@ -29,7 +29,7 @@ class CategoryList extends React.Component {
     clickAllCategory = async (event) => {
         event.preventDefault()
         await axios
-            .get("http://0.0.0.0:8000/api/product/all")
+            .get(this.props.url + "/api/product/all")
             .then(async response => {
                 this.props.setProduct(response.data)
             })
@@ -53,4 +53,4 @@ class CategoryList extends React.Component {
     }
 }
 
-export default connect("product, category", actions)(withRouter(CategoryList));
+export default connect("product, category, url", actions)(withRouter(CategoryList));

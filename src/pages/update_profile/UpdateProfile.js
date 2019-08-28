@@ -81,7 +81,7 @@ class UpdateProfile extends React.Component {
         e.preventDefault();
         const self = this;
         await axios
-            .post("http://0.0.0.0:8000/api/user_details", {
+            .post(this.props.url + "/api/user_details", {
                 full_name: self.state.full_name,
                 address: self.state.address,
                 sex: self.state.sex,
@@ -101,7 +101,7 @@ class UpdateProfile extends React.Component {
             })
             .catch(error => {
                 axios
-                    .put("http://0.0.0.0:8000/api/user_details", {
+                    .put(this.props.url + "/api/user_details", {
                         full_name: self.state.full_name,
                         address: self.state.address,
                         sex: self.state.sex,
@@ -239,4 +239,4 @@ class UpdateProfile extends React.Component {
     }
 }
 
-export default connect('', actions)(UpdateProfile);
+export default connect('url', actions)(UpdateProfile);

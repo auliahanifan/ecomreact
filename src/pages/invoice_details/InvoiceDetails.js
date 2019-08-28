@@ -25,7 +25,7 @@ class InvoiceDetails extends React.Component {
     // await this.props.tambahCart(this.state.cart);
     // console.log(self.state.cart)
     axios
-      .post("http://0.0.0.0:8000/api/cart", {
+      .post(this.props.url + "/api/cart", {
         product_id: self.state.id,
         qty: self.state.qty,
       }, {
@@ -72,7 +72,7 @@ class InvoiceDetails extends React.Component {
     const self = this;
     // Untuk mendapatkan isi dari cart
     await axios
-      .get(`http://0.0.0.0:8000/api/transaction_details/${self.props.match.params.trx_id}`,
+      .get(this.props.url + `/api/transaction_details/${self.props.match.params.trx_id}`,
         {
           headers: {
             Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -90,7 +90,7 @@ class InvoiceDetails extends React.Component {
       });
 
     await axios
-      .get('http://0.0.0.0:8000/api/transaction',
+      .get(this.props.url + '/api/transaction',
         {
           headers: {
             Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -215,7 +215,7 @@ class InvoiceDetails extends React.Component {
                   <tr>
                     <th scope="row">
                       Silahkan melakukan pembayaran via :
-  
+
                     <table className="table table-bordered">
 
                         <tbody>
@@ -252,6 +252,6 @@ class InvoiceDetails extends React.Component {
 }
 
 export default connect(
-  "cart, cartList",
+  "cart, cartList, url",
   actions
 )(InvoiceDetails);

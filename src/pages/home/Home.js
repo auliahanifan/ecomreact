@@ -18,13 +18,13 @@ class Home extends React.Component {
   componentDidMount = async () => {
     const self = this;
     await axios
-      .get("http://0.0.0.0:8000/api/category")
+      .get(this.props.url + "/api/category")
       .then(function (response) {
         self.props.setCategory(response.data);
       })
       .catch(function (error) { });
     await axios
-      .get("http://0.0.0.0:8000/api/product/all")
+      .get(this.props.url + "/api/product/all")
       .then(function (response) {
         self.props.setProduct(response.data);
       })
@@ -140,6 +140,6 @@ class Home extends React.Component {
 }
 
 export default connect(
-  "category, product",
+  "category, product, url",
   actions
 )(Home);

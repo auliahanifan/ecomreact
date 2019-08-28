@@ -70,7 +70,7 @@ class Checkout extends React.Component {
       const self = this;
       //  Untuk mendapatkan details
       await axios
-        .get("http://0.0.0.0:8000/api/user_details",
+        .get(this.props.url + "/api/user_details",
           {
             headers: {
               Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -109,7 +109,7 @@ class Checkout extends React.Component {
     await e.preventDefault();
     const self = this;
     await axios
-      .post("http://0.0.0.0:8000/api/transaction",
+      .post(this.props.url + "/api/transaction",
         {
           full_name: self.state.full_name,
           address: self.state.address,
@@ -141,7 +141,7 @@ class Checkout extends React.Component {
     const self = this;
     // Untuk mendapatkan isi dari cart
     await axios
-      .get("http://0.0.0.0:8000/api/cart",
+      .get(this.props.url + "/api/cart",
         {
           headers: {
             Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -289,4 +289,4 @@ class Checkout extends React.Component {
   }
 }
 
-export default connect("userPhone, userAddress, userSex, userFullName", actions)(Checkout);
+export default connect("userPhone, userAddress, userSex, userFullName, url", actions)(Checkout);

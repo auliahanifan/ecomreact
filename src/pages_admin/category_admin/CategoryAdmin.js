@@ -32,7 +32,7 @@ class CategoryAdmin extends React.Component {
         e.preventDefault();
         const self = this;
         await axios
-            .post("http://0.0.0.0:8000/api/category", {
+            .post(this.props.url + "/api/category", {
                 name: self.state.name,
                 description: self.state.description
             },
@@ -57,7 +57,7 @@ class CategoryAdmin extends React.Component {
         console.log(e.target.value)
         const self = this;
         await axios
-            .put("http://0.0.0.0:8000/api/category/" + String(e.target.value), {
+            .put(this.props.url + "/api/category/" + String(e.target.value), {
                 name: self.state.name,
                 description: self.state.description
             },
@@ -82,7 +82,7 @@ class CategoryAdmin extends React.Component {
         console.log(e.target.value)
         const self = this;
         await axios
-            .delete("http://0.0.0.0:8000/api/category/" + String(e.target.value),
+            .delete(this.props.url + "/api/category/" + String(e.target.value),
                 {
                     headers: {
                         Authorization: "Bearer " + String(localStorage.getItem('admin_token'))
@@ -103,7 +103,7 @@ class CategoryAdmin extends React.Component {
     componentDidMount = async () => {
         const self = this;
         await axios
-            .get("http://0.0.0.0:8000/api/category", {
+            .get(this.props.url + "/api/category", {
                 name: self.state.name,
                 description: self.state.description
             })
@@ -226,4 +226,4 @@ class CategoryAdmin extends React.Component {
     }
 }
 
-export default connect('', actions)(CategoryAdmin);
+export default connect('url', actions)(CategoryAdmin);

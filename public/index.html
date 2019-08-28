@@ -61,6 +61,14 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+    <script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('reCAPTCHA_site_key', {action: 'homepage'}).then(function(token) {
+           ...
+        });
+    });
+    </script>
 
 </body>
 

@@ -32,7 +32,7 @@ class SignIn extends React.Component {
         e.preventDefault();
         const self = this;
         await axios
-            .post("http://0.0.0.0:8000/api/login", {
+            .post(this.props.url + "/api/login", {
                 username: self.state.username,
                 password: self.state.password
             })
@@ -110,4 +110,4 @@ class SignIn extends React.Component {
     }
 }
 
-export default connect('', actions)(SignIn);
+export default connect('url', actions)(SignIn);

@@ -14,7 +14,8 @@ class SigninAdmin extends React.Component {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      product: []
     };
   }
 
@@ -32,7 +33,7 @@ class SigninAdmin extends React.Component {
     e.preventDefault();
     const self = this;
     await axios
-      .post("http://0.0.0.0:8000/api/login/admin", {
+      .post(this.props.url + "/api/login/admin", {
         username: self.state.username,
         password: self.state.password
       })
@@ -132,4 +133,4 @@ class SigninAdmin extends React.Component {
   }
 }
 
-export default connect('', actions)(SigninAdmin);
+export default connect('url', actions)(SigninAdmin);

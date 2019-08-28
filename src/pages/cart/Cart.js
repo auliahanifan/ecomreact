@@ -20,7 +20,7 @@ class Cart extends React.Component {
   componentDidMount = async () => {
     const self = this;
     await axios
-      .get("http://0.0.0.0:8000/api/product/all")
+      .get(this.props.url + "/api/product/all")
       .then(function (response) {
         self.props.setProduct(response.data);
 
@@ -29,7 +29,7 @@ class Cart extends React.Component {
 
 
     await axios
-      .get("http://0.0.0.0:8000/api/cart",
+      .get(this.props.url + "/api/cart",
         {
           headers: {
             Authorization: "Bearer " + String(localStorage.getItem('user_token'))
@@ -76,4 +76,4 @@ class Cart extends React.Component {
   }
 }
 
-export default connect("cart, cartList, cartTotalPrice, product", actions)(Cart);
+export default connect("cart, cartList, cartTotalPrice, product, url", actions)(Cart);
