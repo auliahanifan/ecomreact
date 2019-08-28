@@ -19,6 +19,7 @@ script:
 - sudo chmod +x deploy.sh
 - sudo chmod 600 deploy_rsa
 after_script:
+- npm run build
 - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
 - docker build -t ${DOCKER_HUB_ORG}/${DOCKER_IMAGE_NAME}:production-${TRAVIS_BUILD_ID}
   .
