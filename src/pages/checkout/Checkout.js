@@ -131,7 +131,6 @@ class Checkout extends React.Component {
 
   componentDidMount = async () => {
     const self = this;
-    // Untuk mendapatkan isi dari cart
     await axios
       .get(this.props.url + "/api/cart",
         {

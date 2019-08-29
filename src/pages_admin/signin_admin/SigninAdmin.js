@@ -49,6 +49,7 @@ class SigninAdmin extends React.Component {
   };
 
   render() {
+    // Check if logged in or not
     if (localStorage.getItem('admin_logged_in') !== 'true') {
       return (
         <div>

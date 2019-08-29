@@ -18,6 +18,7 @@ class CategoryAdmin extends React.Component {
             description: ""
         }
     }
+
     setName = async event => {
         event.preventDefault();
         await this.setState({ name: event.target.value });
@@ -28,6 +29,7 @@ class CategoryAdmin extends React.Component {
         await this.setState({ description: event.target.value });
     };
 
+    // Submit (add) new category
     doSubmit = async e => {
         e.preventDefault();
         const self = this;
@@ -51,7 +53,7 @@ class CategoryAdmin extends React.Component {
             });
     };
 
-
+    // Edit the category
     doEdit = async e => {
         e.preventDefault();
         console.log(e.target.value)
