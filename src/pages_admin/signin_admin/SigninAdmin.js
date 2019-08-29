@@ -67,7 +67,7 @@ class SigninAdmin extends React.Component {
                     src={blackLogo}
                     alt="Ba-ik"
                   />
-                  <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+                  <h1 class="h3 mb-3 font-weight-normal">Please Sign In Now</h1>
                   <label for="inputUsername" class="sr-only">
                     Username
                   </label>
