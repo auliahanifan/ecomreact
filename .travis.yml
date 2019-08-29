@@ -15,7 +15,6 @@ env:
   - DOCKER_IMAGE_NAME="react-frontend"
   - DOCKER_HUB_ORG="ahanifan"
 before_script:
-- rm -rf node_modules
 - openssl aes-256-cbc -K $encrypted_44a6f8b32bf9_key -iv $encrypted_44a6f8b32bf9_iv
   -in deploy_rsa.enc -out deploy_rsa -d
 - eval "$(ssh-agent -s)"
