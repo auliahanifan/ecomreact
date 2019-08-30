@@ -41,7 +41,7 @@ class NotMatch extends React.Component {
                                 fontSize: "32px"
                             }}
                         >
-                            Page Not Found
+                            Page Tidak Ada
           </h1>
                     </div>
                     <br />
